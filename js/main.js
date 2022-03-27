@@ -14,7 +14,6 @@ const getRandomNumbers = function(min, max)
 {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
-// eslint-disable-next-line no-unused-vars
 const randomId = [
   1,
   2,
@@ -42,37 +41,13 @@ const randomId = [
   24,
   25,
 ];
-
-// eslint-disable-next-line no-unused-vars
-const randomUrl = [
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7,
-  8,
-  9,
-  10,
-  11,
-  12,
-  13,
-  14,
-  15,
-  16,
-  17,
-  18,
-  19,
-  20,
-  21,
-  22,
-  23,
-  24,
-  25,
-];
-// eslint-disable-next-line camelcase
-const RandomDescripion = [
+const getRandomPositiveInteger = (randomId) => {
+  const lower = Math.ceil(Math.min(Math.abs(randomId), Math.abs(randomId)));
+  const upper = Math.floor(Math.max(Math.abs(randomId), Math.abs(randomId)));
+  const result = Math.random() * (upper - lower + 1) + lower;
+  return Math.floor(result);
+};
+const randomDescripion = [
   'Ваше фото - img/avatar-1.svg',
   'Ваше фото - img/avatar-2.svg',
   'Ваше фото - img/avatar-3.svg',
@@ -80,22 +55,39 @@ const RandomDescripion = [
   'Ваше фото - img/avatar-5.svg',
   'Ваше фото - img/avatar-6.svg',
 ];
-const message = [
-  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
+
+
+const messages = [
   'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
-  'Всё отлично!'
+  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
+  'В целом всё неплохо. Но не всё.'
+];
+const names = [
+  'Санек',
+  'Артемий',
+  'Максим',
+];
+const message = [
+  {
+    id: randomId[getRandomPositiveInteger(0, randomId.length -1)],
+    avatar: `Фото - img/avatar-....svg,${  randomDescripion[getRandomNumber(0, 6)]}`,
+    message: messages[getRandomNumber(0, 2)],
+    name: names[getRandomNumber(0, names.length -1)],
+  }
 ];
 const creatRandomDescription = () => {
   const randomNameId = getRandomNumber(0, randomId.length -1);
-  const randomUrls = getRandomNumber(0, randomUrl.length -1);
-  const RandomDescripions = getRandomNumber(0, RandomDescripion.length -1);
-  const RandomLikes = getRandomNumbers(15, 200);
-  const RandomComments = getRandomNumber(0, message.length -1);
+  const randomUrl = getRandomNumber(0, randomId.length -1);
+  const randomDescripions = getRandomNumber(0, randomDescripion.length -1);
+  const randomLikes = getRandomNumbers(15, 200);
+  const randomComments = getRandomNumber(0, 2);
   return {
     id: randomId[randomNameId],
-    Url: randomUrl[randomUrls],
-    description: RandomDescripion[RandomDescripions],
-    likes: RandomLikes,
-    message: message[RandomComments],
+    url: randomId[randomUrl],
+    description: randomDescripion[randomDescripions],
+    likes: randomLikes,
+    message: messages[randomComments],
   };
 };
+// Массив, в котором лежат все остальные
+const allDescriptions = randomId.concat(randomDescripion, messages, names, message);
