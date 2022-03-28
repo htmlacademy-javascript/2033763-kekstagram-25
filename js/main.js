@@ -14,39 +14,6 @@ const getRandomNumbers = function(min, max)
 {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
-const randomId = [
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7,
-  8,
-  9,
-  10,
-  11,
-  12,
-  13,
-  14,
-  15,
-  16,
-  17,
-  18,
-  19,
-  20,
-  21,
-  22,
-  23,
-  24,
-  25,
-];
-const getRandomPositiveInteger = (randomId) => {
-  const lower = Math.ceil(Math.min(Math.abs(randomId), Math.abs(randomId)));
-  const upper = Math.floor(Math.max(Math.abs(randomId), Math.abs(randomId)));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
-};
 const randomDescripion = [
   'Ваше фото - img/avatar-1.svg',
   'Ваше фото - img/avatar-2.svg',
@@ -69,28 +36,28 @@ const names = [
 ];
 const message = [
   {
-    id: randomId[getRandomPositiveInteger(0, randomId.length -1)],
+    id: [getRandomNumber(0, 25)],
     avatar: `Фото - img/avatar-....svg,${  randomDescripion[getRandomNumber(0, 6)]}`,
     message: messages[getRandomNumber(0, 2)],
     name: names[getRandomNumber(0, names.length -1)],
   }
 ];
 const creatRandomDescription = () => {
-  const randomNameId = getRandomNumber(0, randomId.length -1);
-  const randomUrl = getRandomNumber(0, randomId.length -1);
+  const randomNameId = getRandomNumber(0, 25);
+  const randomUrl = getRandomNumber(0, 25);
   const randomDescripions = getRandomNumber(0, randomDescripion.length -1);
   const randomLikes = getRandomNumbers(15, 200);
   const randomComments = getRandomNumber(0, 2);
   return {
-    id: randomId[randomNameId],
-    url: randomId[randomUrl],
+    id: [randomNameId],
+    url: [randomUrl],
     description: randomDescripion[randomDescripions],
     likes: randomLikes,
     message: messages[randomComments],
   };
 };
 // Массив, в котором лежат все остальные
-photos = [];
+const photos = [];
 for (let i = 1; i <=25; i++){
   const photo = creatRandomDescription(i);
   photos.push(photo);
