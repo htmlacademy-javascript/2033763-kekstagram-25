@@ -90,4 +90,8 @@ const creatRandomDescription = () => {
   };
 };
 // Массив, в котором лежат все остальные
-const allDescriptions = randomId.concat(randomDescripion, messages, names, message);
+photos = [];
+for (let i = 1; i <=25; i++){
+  const photo = creatRandomDescription(i);
+  photos.push(photo);
+}
