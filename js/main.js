@@ -1,19 +1,4 @@
-const checkLength = (string, maxlength) => {
-  if (string.length <= maxlength) {
-    return true; //подходит
-  } else {
-    return false; //не подходит
-  }
-};
-// https://ru.stackoverflow.com/questions/66866/Как-получить-случайное-число-в-заданном-промежутке-на-javascript
-const getRandomNumber = function(min, max)
-{
-  return Math.floor(Math.random() * (max - min + 1 - 0.5)) + min + min;
-};
-const getRandomNumbers = function(min, max)
-{
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
+import {getRandomNumber} from 'js/util.js';
 const randomDescripion = [
   'Ваше фото - img/avatar-1.svg',
   'Ваше фото - img/avatar-2.svg',
@@ -42,21 +27,3 @@ const message = [
     name: names[getRandomNumber(0, names.length -1)],
   }
 ];
-
-const creatRandomDescription = (id) => {
-  const randomDescripions = getRandomNumber(0, randomDescripion.length -1);
-  const randomLikes = getRandomNumbers(15, 200);
-  return {
-    id: id,
-    url: `photos/${ id }.jpg`,
-    description: randomDescripion[randomDescripions],
-    likes: randomLikes,
-    comments: message,
-  };
-};
-// Массив, в котором лежат все остальные
-const photos = [];
-for (let i = 1; i <= 25 ; i++){
-  const photo = creatRandomDescription(i);
-  photos.push(photo);
-}
