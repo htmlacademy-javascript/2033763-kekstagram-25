@@ -36,29 +36,33 @@ const names = [
 ];
 const message = [
   {
-    id: [getRandomNumber(0, 25)],
+    id: getRandomNumber(0, 25),
     avatar: `Фото - img/avatar-....svg,${  randomDescripion[getRandomNumber(0, 6)]}`,
     message: messages[getRandomNumber(0, 2)],
     name: names[getRandomNumber(0, names.length -1)],
   }
 ];
-const creatRandomDescription = () => {
+
+const creatRandomDescription = (id) => {
   const randomNameId = getRandomNumber(0, 25);
   const randomUrl = getRandomNumber(0, 25);
   const randomDescripions = getRandomNumber(0, randomDescripion.length -1);
   const randomLikes = getRandomNumbers(15, 200);
   const randomComments = getRandomNumber(0, 2);
   return {
-    id: [randomNameId],
-    url: [randomUrl],
+    id: id,
+    url: `photos/${ id }.jpg`,
     description: randomDescripion[randomDescripions],
     likes: randomLikes,
-    message: messages[randomComments],
+    comments: message,
   };
 };
 // Массив, в котором лежат все остальные
 const photos = [];
-for (let i = 1; i <=25; i++){
+for (let i = 1; i ; i++){
   const photo = creatRandomDescription(i);
   photos.push(photo);
 }
+console.log(
+  photos.reduce()
+);
