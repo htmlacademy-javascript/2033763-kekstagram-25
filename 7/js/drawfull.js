@@ -1,5 +1,4 @@
 import { photos } from './data.js';
-import { message } from './data';
 const fullPicture = document.querySelector('.big-picture');
 const fragMent = document.createDocumentFragment();
 const socialCountComments = document.querySelector('.social__comment-count');
@@ -16,18 +15,52 @@ function closeUserModal () {
 
   document.removeEventListener('keydown', onPopupEscKeydown);
 }
+
+
+const userModalElement = document.querySelector('.setup');
+const userModalOpenElement = document.querySelector('.setup-open');
+const userModalCloseElement = userModalElement.querySelector('.setup-close');
+
+
+function openUserModal () {
+  userModalElement.classList.remove('hidden');
+  photos();
+
+  document.addEventListener('keydown', onPopupEscKeydown);
+}
+
+
+userModalOpenElement.addEventListener('click', () => {
+  openUserModal();
+});
+
+userModalOpenElement.addEventListener('keydown', (evt) => {
+  if (isEnterKey(evt)) {
+    openUserModal();
+  }
+});
+
+userModalCloseElement.addEventListener('click', () => {
+  closeUserModal();
+});
+
+userModalCloseElement.addEventListener('keydown', (evt) => {
+  if (isEnterKey(evt)) {
+    closeUserModal();
+  }
+});
+
+
 const body = document.querySelector('body');
-fullPicture.forEach((photo) => {
+photos.forEach((photo) => {
   fullPicture.classList.remove('hidden');
-  const bigPicture = fullPicture.cloneNode(true);
-  bigPicture.querySelector('.big-picture__img').src = photo.url;
-  bigPicture.querySelector('.likes-count').textContent = photo.likes;
-  bigPicture.querySelector('.comments-count').textContent = photo.comments.length;
-  bigPicture.querySelector('.social__comments').textContent = photo.message;
+  fragMent.querySelector('.big-picture__img').src = photo.url;
+  fragMent.querySelector('.likes-count').textContent = photo.likes;
+  fragMent.querySelector('.comments-count').textContent = photo.comments;
+  fragMent.querySelector('.social__comments').textContent = photo.message;
   socialCountComments.classList.add('.hidden');
   commentsLoader.classList.add('.hidden');
   body.classList.add('.modal-open');
-  fragMent.appendChild(bigPicture);
-
+  fragMent.appendChild(fullPicture);
 });
 fullPicture.appendChild(fragMent);
