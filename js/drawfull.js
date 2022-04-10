@@ -15,6 +15,42 @@ function closeUserModal () {
 
   document.removeEventListener('keydown', onPopupEscKeydown);
 }
+
+
+const userModalElement = document.querySelector('.setup');
+const userModalOpenElement = document.querySelector('.setup-open');
+const userModalCloseElement = userModalElement.querySelector('.setup-close');
+
+
+function openUserModal () {
+  userModalElement.classList.remove('hidden');
+  photos();
+
+  document.addEventListener('keydown', onPopupEscKeydown);
+}
+
+
+userModalOpenElement.addEventListener('click', () => {
+  openUserModal();
+});
+
+userModalOpenElement.addEventListener('keydown', (evt) => {
+  if (isEnterKey(evt)) {
+    openUserModal();
+  }
+});
+
+userModalCloseElement.addEventListener('click', () => {
+  closeUserModal();
+});
+
+userModalCloseElement.addEventListener('keydown', (evt) => {
+  if (isEnterKey(evt)) {
+    closeUserModal();
+  }
+});
+
+
 const body = document.querySelector('body');
 photos.forEach((photo) => {
   fullPicture.classList.remove('hidden');
