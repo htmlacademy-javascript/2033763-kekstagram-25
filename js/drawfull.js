@@ -16,12 +16,6 @@ function closeUserModal () {
   document.removeEventListener('keydown', onPopupEscKeydown);
 }
 
-
-const userModalElement = document.querySelector('.setup');
-const userModalOpenElement = document.querySelector('.setup-open');
-const userModalCloseElement = userModalElement.querySelector('.setup-close');
-
-
 function openUserModal () {
   userModalElement.classList.remove('hidden');
   photos();
