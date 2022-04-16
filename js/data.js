@@ -45,4 +45,4 @@ for (let i = 1; i <= 25 ; i++){
   const photo = creatRandomDescription(i);
   photos.push(photo);
 }
-export {photos};
+export {photos, message};
